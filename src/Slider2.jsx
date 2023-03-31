@@ -3,10 +3,10 @@ import OneHour2 from "./OneHour2"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-//THE SLIDER WAS MADE FROM SCRATCH.
-//IF YOU TOOK A PRE-MADE COMPONENT FROM MUI/BOOTSTRAP/INTERNET,
+//THIS SLIDER WAS HERE MADE FROM SCRATCH.
+//IF YOU TAKE A PRE-MADE COMPONENT FROM MUI/BOOTSTRAP/INTERNET,
 //THEN YOU'D USE YOUR COMPONENT HERE
-//THE REALLY CRUCIAL PART STARTS FROM THE RENDERING PART (LN 41)
+//THE CRUCIAL PART STARTS FROM THE RENDERING PART (LN 41)
 
 export default function Slider2 ({ data }){
 
@@ -37,11 +37,12 @@ export default function Slider2 ({ data }){
         }
     }
 
-
+    console.log("This is data from Slider2: ")
+    console.log(data)
 //WHAT IS INTERESTING HERE IS THAT WE HAVE A DATA ARRAY PASSED INTO THE
 //SLIDER TO MAP THE DATA ONTO EACH HOUR-CARD (SEE LN 53).
 //WE ARE JUST PASSING IN PROP "data", BUT ACTUALLY THE ARRAY IS DIFFERENT ACCORDING TO THE TAB/THE DAY SELECTED.
-//THAT DIVERGING OF PATHS HAPPENED IN THE COMPONENT "SAKID.JSX", IN LINES 85,88,91
+//THAT DIVERGING OF PATHS HAPPENED IN THE COMPONENT "SAKID.JSX", IN LINES 92, 95 & 98
     return (
         <div className="carousel">
             <div className="arrowblock">
@@ -49,14 +50,15 @@ export default function Slider2 ({ data }){
             </div>
             <div className="frame">
                 <div className="slider" style={position}>
-                    {data.map((entry) => (
+                    {data.map((item, index) => (
                         <OneHour2
-                            date={entry["date"]}
-                            hour={entry["hour"]}
-                            icon={entry["icon"]}
-                            condition={entry["condition"]}
-                            temp={entry["temp"]}
-                            rain={entry["rain"]}
+                            key={index}
+                            date={item.time.split(" ")[0]}
+                            hour={item.time.split(" ")[1]}
+                            icon={item.condition.icon}
+                            condition={item.condition.text}
+                            temp={item.temp_c}
+                            rain={item.precip_mm}
                         />
                     ))}
                 </div>
