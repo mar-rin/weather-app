@@ -3,9 +3,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
+//COMPONENT FOR RENDERING THE BASIC TEXT FIELD + BUTTON FROM MUI
+//WE ARE PASSING IN TWO PROPS:
+// 1) onChange FOR GRABBING THE USER INPUT;
+// 2) handleSubmit FOR DOING THE FETCHING (SEE APP.JSX)
 export default function Input({onChange, handleSubmit}){
     return (
-        <div>
+        <div className="container">
             <Box
                 component="form"
                 sx={{
