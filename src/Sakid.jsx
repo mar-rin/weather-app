@@ -47,20 +47,27 @@ function a11yProps(index) {
 //BOTH COME DOWN FROM THE APP.JSX LEVEL.
 //"city" IS USED TO CHANGE THE SLIDER TITLE (SEE LN 75)
 //"data" ARRAY IS SPLIT HERE INTO DAYS. AGAIN, THIS COULD HAVE BEEN DONE ALREADY IN APP.JSX,
-//OR WITH A useState -- DOES NOT GREATLY MATTER. SAME PRINCIPLE. GET A BIG DATA OBJECT FROM THE API,
+// -- DOES NOT GREATLY MATTER. SAME PRINCIPLE. GET A BIG DATA OBJECT FROM THE API,
 //SPLIT IT DOWN FOR THE CHUNKS WE ACTUALLY NEED
-export default function Sakid({city, data}) {
-    const [value, setValue] = React.useState(0);
 
+export default function Sakid({city, data}) {
+//useStates that come with MUI TABS template
+    const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
 //SPLIT THE MAPPED DATA OBJECT FROM APP.JSX INTO THREE DAYS
-//THEN WE WILL PASS THESE ARRAYS DOWN INTO THE THREE TABS, SEE LN 85, 88, 91
-    const day1 = data.slice(0,24);
-    const day2 = data.slice(24,48);
-    const day3 = data.slice(48,72);
+//THEN PASS THESE ARRAYS DOWN INTO THE THREE TABS, SEE LN 92, 95, 98
+    let day1 = [];
+    let day2 = [];
+    let day3 = [];
+
+    if (data) {
+        day1 = data[0].hour;
+        day2 = data[1].hour;
+        day3 = data[2].hour;
+    }
 
     return (
         <div>
