@@ -1,6 +1,7 @@
 import react, { useState, useMemo } from "react";
 import Sakid from "./Sakid";
 import Input from "./Input"
+import Grid from '@mui/material/Grid';
 
 const head = "http://api.weatherapi.com/v1/forecast.json?key=3d38e4caccb748eb8f462648233003&q=";
 const tail = "&days=3&aqi=no&alerts=no";
@@ -15,7 +16,7 @@ function App() {
     async function handleSubmit() {
         data = [];
         try {
-                await fetch(url)
+            await fetch(url)
                     .then((response) => response.json())
                     .then((response) => setResponse(response))
             } catch(error) {
@@ -41,12 +42,19 @@ function App() {
 
 
     return (
-        <div>
-            <header>
-                <Input onChange={(e)=>setCity(e.target.value)} handleSubmit={handleSubmit} />
-            </header>
-            {(response !== "") &&
-            <Sakid className="detail" city={city.toUpperCase()} data={data} />}
+        <div className="container">
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}
+            >
+                   <Input onChange={(e)=>setCity(e.target.value)} handleSubmit={handleSubmit} />
+                   {(response !== "") &&
+                        <Sakid className="detail" city={city.toUpperCase()} data={data} />}
+            </Grid>
         </div>
     )
 }

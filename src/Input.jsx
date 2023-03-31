@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 
 export default function Input({onChange, handleSubmit}){
     return (
-        <div>
+        <div className="container">
             <Box
                 component="form"
                 sx={{

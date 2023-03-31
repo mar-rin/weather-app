@@ -1,10 +1,11 @@
 import React from "react";
-import Slider from "./Slider";
+import Slider2 from "./Slider2"
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -52,25 +53,34 @@ export default function Sakid({city, data}) {
 
     return (
         <div>
-            <h1>Weather in {city}</h1>
-            <Box sx={{ width: '320px' }}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                        <Tab label="Day 1" {...a11yProps(0)} />
-                        <Tab label="Day 2" {...a11yProps(1)} />
-                        <Tab label="Day 3" {...a11yProps(2)} />
-                    </Tabs>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}
+            >
+                <h1>Weather in {city}</h1>
+                <Box sx={{ width: '400px' }} className="box">
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                            <Tab label="Day 1" {...a11yProps(0)} />
+                            <Tab label="Day 2" {...a11yProps(1)} />
+                            <Tab label="Day 3" {...a11yProps(2)} />
+                        </Tabs>
+                    </Box>
+                    <TabPanel value={value} index={0}>
+                        <Slider2 data={day1}/>
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <Slider2 data={day2}/>
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                        <Slider2 data={day3}/>
+                    </TabPanel>
                 </Box>
-                <TabPanel value={value} index={0}>
-                    <Slider data={day1}/>
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    <Slider data={day2}/>
-                </TabPanel>
-                <TabPanel value={value} index={2}>
-                    <Slider data={day3}/>
-                </TabPanel>
-            </Box>
+            </Grid>
         </div>
     );
 }
