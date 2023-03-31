@@ -57,8 +57,8 @@ export default function Sakid({city, data}) {
         setValue(newValue);
     };
 
-//SPLIT THE MAPPED DATA OBJECT FROM APP.JSX INTO THREE DAYS
-//THEN PASS THESE ARRAYS DOWN INTO THE THREE TABS, SEE LN 92, 95, 98
+//SPLIT DATA FROM APP.JSX wrt DAYS -- BUT CHECK FIRST THAT THERE IS DATA TO SPLIT!
+//THEN PASS THE RESULTING THREE ARRAYS DOWN INTO THE THREE TABS, SEE LN 92, 95, 98
     let day1 = [];
     let day2 = [];
     let day3 = [];
